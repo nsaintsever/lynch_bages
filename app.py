@@ -66,6 +66,9 @@ conversion_rate = fx_series.iloc[-1][0]
 
 # Load data
 df = pd.read_csv("sub_df.csv", sep=',', quotechar='"')
+df['date'] = df['date'].dropna()
+df = df[df.date !=""]
+
 df['date'] = pd.to_datetime(df['date'], format='%Y%m%d')
 df['millesime'] = pd.to_numeric(df['millesime']).astype(int)
 df['quantite_totale'] = df['per'] * df['quantite']
